@@ -14,17 +14,17 @@ array = dataframe.values
 X = array[:,0:8]
 Y = array[:,8]
 
-print X
-print "\n\n\n"
-print Y
-print "\n\n\n"
+#print X
+#print "\n\n\n"
+#print Y
+#print "\n\n\n"
 # feature extraction
 pca = PCA(n_components=8)
 fit = pca.fit(X)
 
-print "\n\n\n\n\nHey\n\n\n\n"
-print fit
-print "\n\n\n\n\nHey\n\n\n\n"
+#print "\n\n\n\n\nHey\n\n\n\n"
+#print fit
+#print "\n\n\n\n\nHey\n\n\n\n"
 
 # summarize components
 print("Explained Variance: %s") % fit.explained_variance_ratio_
