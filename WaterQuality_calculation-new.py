@@ -45,6 +45,7 @@ water_quality =  [None] * 139
 
 
 
+
 #-999 fake values
 
 # 1-mg_weight;
@@ -229,11 +230,18 @@ for i in range (1,139):
 			#a[i][17] = a[i][17] + a[i][x]  		
 			water_quality[i] = sub_index[i][x] + water_quality[i]
 
-for i in range (1,24) :
-	print water_quality[i]/100
-	print "\n\n"
-	
+water_index=  [None] * 139
 
+for i in range (1,139) :
+	water_index[i] = abs(5-round(water_quality[i]/100))
+	print abs(5-round(water_quality[i]/100))
+	print "\n\n"
+
+for i in range(1,139) :
+	if water_index[i]==0:
+		water_index[i] = 1.0
+	
+# water_index in terms of those 1 and 2
 
 
 
