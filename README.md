@@ -5,6 +5,6 @@
 3. Integrate PCA and SVM analysis
 
 # Team Details<br />
-Team1: 15CO116,15CO211<br />
-Team2: 15CO239,15CO253<br />
+Team1: 15CO239,15CO253<br />
+Team2: 15CO116,15CO211<br />
 Team3: 15CO152,15CO225
