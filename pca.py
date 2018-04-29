@@ -1,11 +1,15 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import math
+import pandas as pd
 
 from pandas import read_csv
 from sklearn.decomposition import PCA
+
+
+
 # load data
-url = '/home/ubuntu/Desktop/SoftComputing/SoftComp1/water quality date sample.csv'
+url = '/home/ubuntu/Desktop/SoftComputing/SoftComp1/dataset.csv'
 
 names = ['MG','PH','K','NITRATE','SULPHATE','CARBONATE','CHLORIDE','FLUORIDE', 'Water Quality']
 dataframe = read_csv(url, names=names)
@@ -80,12 +84,14 @@ for i in range(0,8):
 	valu = 0
 	for j in range(0,num):
 		print fit.components_[j][i]
+		#print fit.explained_variance_ratio_[j]
 		valu =  (fit.components_[j][i] * fit.explained_variance_ratio_[j])
 		valu = valu * valu
 		value = value + valu
-	Y[i] = math.sqrt(value)
-		
-	print "\n\n\n"
+	Y[i] = abs(math.sqrt(value))
+	print "\n\n"
+
+	
 
 print("\n\n\nExplained Variance of the reduced dimensions :\n\n\n %s") % fit.explained_variance_ratio_
 
@@ -97,20 +103,42 @@ for i in range(0,8):
 
 value = "string"
 val=0
+temp=0
 
-for i in range(0,8):
-	for j in range(1,8):
-		if Y[i]>Y[j]:
-			val = Y[i]
-			Y[i] = Y[j]
-			Y[j] = val
+
+for passnum in range(0,8):
+	for i in range(passnum):
+		if Y[i]>Y[i+1]:
 			value = names[i]
-			names[i] = names[j]
-			names[j] = value
+			names[i]=names[i+1]
+			names[i+1]=value
+			temp = Y[i]
+			Y[i] = Y[i+1]
+			Y[i+1] = temp
+
+
+for passnum in range(0,8):
+	for i in range(passnum):
+		if Y[i]>Y[i+1]:
+			value = names[i]
+			names[i]=names[i+1]
+			names[i+1]=value
+			temp = Y[i]
+			Y[i] = Y[i+1]
+			Y[i+1] = temp
+
 			
 print "\n\n\nOrder of the Attributes contribution to the new dimensions:\n"
-for i in range(0,8):
-	print "",i+1,names[i]
+
+i = 7
+j = 0
+
+while i>=0:
+	print "",j+1,names[i]
+	i=i-1
+	j=j+1
+
+
 
 
 #print X
@@ -129,6 +157,5 @@ for i in X:
 #print count
 #print "\n\n\n---\n\n\n"
 #print (pca.fit(X)).components_
-
 
 # summarize components
